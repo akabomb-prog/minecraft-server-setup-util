@@ -23,8 +23,6 @@ IF %ERRORLEVEL%==0 SET JAVA_EXISTS=1
 
 IF %JAVA_EXISTS%==0 CALL :JAVA_NOT_FOUND
 
-ECHO All seems to be well.
-ECHO.
 ECHO Welcome to the Minecraft Server Setup Utility.
 
 GOTO :A
@@ -51,7 +49,7 @@ ECHO Download URL: %OBJ%
 
 IF EXIST "server.jar" GOTO :SERVER_JAR_ALREADY_PRESENT
 
-certutil.exe -urlcache -split -f "%OBJ%" server.jar > NUL
+curl "%OBJ%" --output server.jar
 IF NOT EXIST server.jar GOTO :SERVER_JAR_NOT_PRESENT
 
 GOTO :D
